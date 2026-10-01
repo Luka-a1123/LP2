@@ -5,7 +5,9 @@ public class Disciplina {
     private int horasEstudo;
     private int[] notas;
 
-    public static void Disciplina(String nomeDisciplina);
+    public Disciplina(String nomeDisciplina) {
+        this.nomeDisciplina = nomeDisciplina;
+    }
 
     public void cadastraHoras(int horas) {
 
