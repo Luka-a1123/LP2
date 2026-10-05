@@ -22,7 +22,7 @@ public class RegistroTempoOnline {
     }
     @Override
     public String toString() {
-        String impressao = nomeDisciplina + " " + tempoOnline + " " + tempoEsperado;
+        String impressao = nomeDisciplina + " " + tempoOnline + "/" + tempoEsperado;
         return impressao;
 
     }
