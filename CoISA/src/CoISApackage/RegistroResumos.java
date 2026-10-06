@@ -13,7 +13,10 @@ public class RegistroResumos {
     }
 
     public void adiciona(String tema, String conteudo) {
+
+        // acho que nao precisa criar um booleano, da pra fazer se o controlador for = ou > q o max_resumos, controlador volta pra 0
         boolean limite_atingido = false;
+
         if (controlador == max_resumos) {
             controlador = 0;
             limite_atingido = true;

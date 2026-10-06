@@ -1,5 +1,7 @@
 package CoISApackage;
 
+import java.util.Arrays;
+
 public class Disciplina {
     private String nomeDisciplina;
     private int horasEstudo;
@@ -27,13 +29,7 @@ public class Disciplina {
 
     @Override
     public String toString() {
-        StringBuilder valores = new StringBuilder("[");
-        for (int i = 0; i < 3; i++) {
-            valores.append(new StringBuilder(notas[i] + "," + " "));}
-        valores.append(notas[3]);
-        valores.append("]");
+        return nomeDisciplina + " " + horasEstudo + " " + (soma / 4) + " " + Arrays.toString(notas);
 
-        return nomeDisciplina + " " + horasEstudo + " " + (soma / 4) + " " + valores;
-    }
 
 }
