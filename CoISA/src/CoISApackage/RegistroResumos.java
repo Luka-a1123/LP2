@@ -1,5 +1,7 @@
 package CoISApackage;
 
+import java.util.Arrays;
+
 public class RegistroResumos {
     private Resumo[] resumos;
     private int controlador;
@@ -13,17 +15,12 @@ public class RegistroResumos {
     }
 
     public void adiciona(String tema, String conteudo) {
-
-        // acho que nao precisa criar um booleano, da pra fazer se o controlador for = ou > q o max_resumos, controlador volta pra 0
-        boolean limite_atingido = false;
-
         if (controlador == max_resumos) {
             controlador = 0;
-            limite_atingido = true;
         }
         this.resumos[controlador] = new Resumo(tema, conteudo);
         controlador += 1;
-        if (limite_atingido == false) cadastrados += 1;
+        if (cadastrados < max_resumos) cadastrados += 1;
     }
 
     public String[] pegaResumos() {
@@ -52,5 +49,19 @@ public class RegistroResumos {
             if (resumos[i].getTema().equals(tema)) return true;
         }
         return false;
+    }
+    public String[] busca(String chaveDeBusca) {
+        int tamanho = 0;
+        for (int i = 0; i < cadastrados; i++) {if (resumos[i].getConteudo().toLowerCase().contains(chaveDeBusca.toLowerCase())) tamanho += 1;}
+        String[] temas_encontrados = new String[tamanho];
+        int controle = 0;
+        for (int i = 0; i < cadastrados; i++) {
+            if (resumos[i].getConteudo().toLowerCase().contains(chaveDeBusca.toLowerCase())) {
+                temas_encontrados[controle] = resumos[i].getTema();
+                controle += 1;
+            }
+        }
+        Arrays.sort(temas_encontrados);
+        return temas_encontrados;
     }
 }

@@ -1,5 +1,8 @@
 package CoISApackage;
 
+/**
+ * Rep
+ */
 public class Descanso {
     private int horasDescanso;
     private int nSemanas;

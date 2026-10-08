@@ -5,11 +5,23 @@ import java.util.Arrays;
 public class Disciplina {
     private String nomeDisciplina;
     private int horasEstudo;
-    private double[] notas = new double[4];
-    private double soma;
+    private static int nNotas;
+    private double[] notas;
+    private static int[] pesos = {1, 1, 1, 1};
+    private double media;
+
+    public Disciplina(String nomeDisciplina, int nNotas, int[] pesos) {
+        this.nomeDisciplina = nomeDisciplina;
+        this.nNotas = nNotas;
+        this.notas = new double[nNotas];
+        this.pesos = pesos;
+    }
+    public Disciplina(String nomeDisciplina, int nNotas) {
+        this(nomeDisciplina, nNotas, pesos);
+    }
 
     public Disciplina(String nomeDisciplina) {
-        this.nomeDisciplina = nomeDisciplina;
+        this(nomeDisciplina, 4, pesos);
     }
 
     public void cadastraHoras(int horas) {
@@ -21,15 +33,21 @@ public class Disciplina {
     }
 
     public boolean aprovado() {
-        soma = 0;
-        for (int i = 0; i < 4; i++) {soma += notas[i];}
-        if (soma / 4 >= 7) {return true;}
+        int soma_pesos = 0;
+        double soma_notas = 0;
+        for (int i = 0; i < pesos.length; i++) {soma_pesos += pesos[i];}
+        for (int i = 0; i < nNotas; i++) {soma_notas += notas[i] * pesos[i];}
+
+        this.media = soma_notas / soma_pesos;
+
+        if (media >= 7) return true;
         return false;
     }
 
     @Override
     public String toString() {
-        return nomeDisciplina + " " + horasEstudo + " " + (soma / 4) + " " + Arrays.toString(notas);
-
+        String printmedia = String.format("%.1f", media);
+        return nomeDisciplina + " " + horasEstudo + " " + printmedia + " " + Arrays.toString(notas);
+    }
 
 }
